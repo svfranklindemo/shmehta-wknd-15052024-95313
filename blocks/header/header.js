@@ -191,10 +191,10 @@ export default async function decorate(block) {
 
   navTools.append(minicart);
 
-  const minicartPanel = navTools.querySelector('.minicart-panel');
+  /*const minicartPanel = navTools.querySelector('.minicart-panel');
 
   const cartButton = navTools.querySelector('.nav-cart-button');
-  cartButton.setAttribute('aria-label', 'Cart');
+  cartButton.setAttribute('aria-label', 'Cart');*/
 
   async function toggleMiniCart(state) {
     const show = state ?? !minicartPanel.classList.contains('nav-panel--show');
@@ -213,7 +213,7 @@ export default async function decorate(block) {
     minicartPanel.classList.toggle('nav-panel--show', show);
   }
 
-  cartButton.addEventListener('click', () => toggleMiniCart());
+  // cartButton.addEventListener('click', () => toggleMiniCart());
 
   // Cart Item Counter
   events.on('cart/data', (data) => {
@@ -284,6 +284,6 @@ export default async function decorate(block) {
   navWrapper.append(nav);
   block.append(navWrapper);
 
-  addAnimation();
-  setActiveTab();
+  // addAnimation();
+  // setActiveTab();
 }

@@ -3,8 +3,8 @@ header .header-nav-wrapper {
   background-color: var(--background-color);
   width: 100%;
   z-index: 20;
-  position: fixed;
-  top: 40px;
+  /*position: fixed;*/
+  /*top: 40px;*/
   padding: 2em 0;
   border-bottom: 1px solid var(--color-neutral-400);
 }
@@ -88,7 +88,7 @@ header nav a:any-link {
   header nav a:any-link {
     font-size: var(--body-font-size-xs);
   }
-  
+
 }
 
 
@@ -214,7 +214,7 @@ header nav .nav-sections ul > li {
 @media (width < 768px) {
   header nav .nav-sections ul > li {
     margin: 15px 0;
-  } 
+  }
 }
 
 header nav .nav-sections ul > li > ul {
