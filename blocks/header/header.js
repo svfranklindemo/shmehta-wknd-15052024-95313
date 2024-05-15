@@ -189,9 +189,9 @@ export default async function decorate(block) {
     </div>
   `);
 
-  navTools.append(minicart);
+  /*navTools.append(minicart);
 
-  /*const minicartPanel = navTools.querySelector('.minicart-panel');
+  const minicartPanel = navTools.querySelector('.minicart-panel');
 
   const cartButton = navTools.querySelector('.nav-cart-button');
   cartButton.setAttribute('aria-label', 'Cart');*/
