@@ -1,13 +1,15 @@
 footer {
-  padding: 2rem;
-  background-color: var(--color-black-100);
+  padding: 0;
+  /*background-color: var(--color-black-100);*/
   font: var(--type-body-2-default-font);
   letter-spacing: var(--type-body-2-default-letter-spacing);
   color: var(--color-neutral-50);
 }
 
 footer .footer {
-  max-width: var(--large-grid-layout);
+  background: var(--color-black-100) url(https://s7ap1.scene7.com/is/image/itcportalprod/df_footer-v2?fmt=webp-alpha) no-repeat;
+  max-width: 1400px;
+  background-size: cover;
   margin: auto;
   height: 19vh;
   padding: 4rem 0;
@@ -31,6 +33,7 @@ footer a {
 footer .wrapper {
   display: flex;
   align-items: center;
+  padding: 4rem;
 }
 
 @media (width <= 900px) {
@@ -82,9 +85,16 @@ footer .wrapper .section.site-links .default-content-wrapper {
 footer .wrapper .section.site-links .default-content-wrapper ul, .footer .wrapper .section.social-media .default-content-wrapper ul {
   margin: 0;
   padding: 0;
-  list-style: none;
+
+  list-style-type: none;
   display: flex;
   flex-wrap: wrap;
+}
+
+footer .wrapper .section.site-links .default-content-wrapper ul li {
+  flex: 1 1 33%;
+  margin-bottom: 10px;
+  font-size: 1.7rem;
 }
 
 footer .wrapper .section.site-links .default-content-wrapper ul li a {
