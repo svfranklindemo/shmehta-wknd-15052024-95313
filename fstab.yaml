@@ -1,0 +1,8 @@
+mountpoints:
+  /: https://adobe.sharepoint.com/sites/edsdemo/Shared%20Documents/lpbeds/shmehta/shmehta-new1/website
+
+folders:
+  /products/: /products/default
+  /adventures/details/: /adventures/details/default
+  /experiments/experiment-adventures-pdp/: /experiments/experiment-adventures-pdp/adventure-pdp-v2
+  /experiments/experiment-pdp/: /experiments/experiment-pdp/pdp-v2
