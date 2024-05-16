@@ -306,6 +306,7 @@ header nav .nav-sections ul > li > a:hover {
     background-color: var(--itc-color-neutral-500);
     white-space: initial;
     border-radius: 20px;
+    z-index: 2;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li > ul::before {
