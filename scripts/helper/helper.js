@@ -33,12 +33,20 @@ function parseTableToJSON(table) {
         for (var j = 0, cell; cell = row.cells[j]; j++) {
             // Check if the cell contains a picture element
             var picture = cell.querySelector('picture img');
+
             if (picture) {
                 // If a picture element is found, get the src attribute of the img element
                 rowData.push(picture.src);
             } else {
                 // Otherwise, get the cell text content and trim any whitespace
                 rowData.push(cell.textContent.trim());
+            }
+
+            if(j === 1) {
+                // second cell may contain href
+                const isAnchor = cell.querySelector('a');
+                const linkPath  = isAnchor ? isAnchor.getAttribute('href') : "#"
+                rowData.push(linkPath)
             }
         }
 

@@ -22,8 +22,11 @@ export default function decorate(block) {
 
         storeData.forEach(store => {
           const anchor = document.createElement('a');
+          anchor.href = `${store[2]}`
+          anchor.title= `${store[1]}`
+          anchor.target= "_blank"
           anchor.className = 'each-store'
-          anchor.innerHTML = `<div><img src="${store[0]}" alt="${store[1]}" /></div><div>${store[1]}</div><div><strong>₹${store[2]}/-</strong></div>`
+          anchor.innerHTML = `<div><img src="${store[0]}" alt="${store[1]}" /></div><div>${store[1]}</div><div><strong>₹${store[3]}/-</strong></div>`
 
           storeWrapper.append(anchor);
         });
