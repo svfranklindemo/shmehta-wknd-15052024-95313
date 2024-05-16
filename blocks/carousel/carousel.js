@@ -1,5 +1,28 @@
 import { fetchPlaceholders } from '../../scripts/aem.js';
 
+
+function parseTable(elTable) {
+
+  // Initialize an object to hold parameter-value pairs
+  var paramMap = {};
+
+  // Loop through the table rows
+  for (var i = 0, row; row = elTable.rows[i]; i++) {
+    // Get the parameter name from the first column
+    var paramName = row.cells[0].textContent.trim();
+    // Get the parameter value from the second column
+    var paramValue = row.cells[1].textContent.trim();
+
+    // Store the parameter name and value in the paramMap object
+    paramMap[paramName] = paramValue;
+  }
+
+  // Return a function that allows fetching values by parameter name
+  return function(paramName) {
+    return paramMap[paramName];
+  };
+}
+
 function updateActiveSlide(slide) {
   const block = slide.closest('.carousel');
   const slideIndex = parseInt(slide.dataset.slideIndex, 10);
@@ -64,10 +87,67 @@ function bindEvents(block) {
     entries.forEach((entry) => {
       if (entry.isIntersecting) updateActiveSlide(entry.target);
     });
-  }, { threshold: 0.5 });
+  }, { threshold: [0.25] });
   block.querySelectorAll('.carousel-slide').forEach((slide) => {
     slideObserver.observe(slide);
   });
+}
+
+function contentSlide(row) {
+  const slide = document.createElement('div');
+  slide.className = 'slide-wrapper'
+  slide.innerHTML = row.querySelector(":scope > td").innerHTML;
+  const dataTable = slide.querySelector(':scope > table')
+
+  const wrapperDiv = document.createElement('div');
+  wrapperDiv.className = 'content-wrapper'
+  if(dataTable) {
+    for (let column of Array.from(dataTable.querySelectorAll(":scope > tbody > tr > td"))) {
+      const isImage = column.querySelector('picture');
+      const isTable = column.querySelector('table');
+
+      if(isImage) {
+        const div = document.createElement('div');
+        div.innerHTML = column.innerHTML;
+
+        wrapperDiv.append(div);
+        continue;
+      }
+
+      if(isTable) {
+        const getParamValue = parseTable(isTable);
+        const videoPath = getParamValue('video');
+        const posterPath = getParamValue('poster');
+
+        const div = document.createElement('div');
+        div.innerHTML = column.innerHTML;
+
+        const video = document.createElement('div');
+        video.className = 'video-div';
+        video.innerHTML = `<video
+            controls=""
+            disablepictureinpicture=""
+            controlslist="nodownload noremoteplayback noplaybackrate"
+            poster="${posterPath}"
+            class="cmp-video__player"
+            src="${videoPath}">
+        </video>`;
+
+
+        div.append(video);
+        const removeElem = div.querySelector('table');
+        div.insertBefore(video, removeElem);
+        div.removeChild(removeElem);
+
+        wrapperDiv.append(div);
+      }
+
+      slide.insertBefore(wrapperDiv, dataTable);
+      slide.removeChild(dataTable);
+    }
+  }
+
+  return slide;
 }
 
 function createSlide(row, slideIndex, carouselId) {
@@ -76,7 +156,29 @@ function createSlide(row, slideIndex, carouselId) {
   slide.setAttribute('id', `carousel-${carouselId}-slide-${slideIndex}`);
   slide.classList.add('carousel-slide');
 
-  row.querySelectorAll(':scope > div').forEach((column) => {
+  const rootTable = row.querySelectorAll(':scope > div > table');
+
+  if(rootTable && rootTable.length) {
+    for (let elData of Array.from(rootTable[0].querySelectorAll(":scope > tbody > tr"))) {
+      const isImage = elData.querySelector(':scope > td > picture');
+      if(isImage) {
+        const bgImage = isImage?.querySelector('img')?.getAttribute('src');
+        // Set the background image using the style property
+        slide.style.backgroundImage = `url("${bgImage}")`;
+
+        // Optionally, set other background properties to ensure it displays correctly
+        slide.style.backgroundSize = 'cover';
+        slide.style.backgroundRepeat = 'no-repeat';
+        slide.style.backgroundPosition = 'center';
+        continue;
+      }
+
+      const content = contentSlide(elData);
+      slide.append(content);
+    }
+  }
+
+  /*row.querySelectorAll(':scope > div').forEach((column) => {
     const isImage = column.querySelector('picture');
     column.classList.add(`carousel-slide-${isImage ? 'image' : 'content'}`);
     slide.append(column);
@@ -86,7 +188,7 @@ function createSlide(row, slideIndex, carouselId) {
       link.classList.remove('button');
       link.classList.add('button-primary');
     }
-  });
+  });*/
 
   const labeledBy = slide.querySelector('h1, h2, h3, h4, h5, h6');
   if (labeledBy) {
