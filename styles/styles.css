@@ -673,3 +673,25 @@ main .section.section-title .default-content-wrapper:first-of-type p::after {
 .dropin-design .dropin-cart-item__sku {
     display: none;
 }
+
+main .section.clear-bottom-padding {
+    padding-bottom: 0;
+}
+main .section.clear-bottom-padding p{
+    margin-bottom: 0;
+}
+main .section.clear-bottom-padding img{
+    display: block;
+}
+main .section.golden-font h1{
+    color: #fff2b7;
+    width: 100%;
+    padding: 2rem 0;
+    border-bottom: 1px solid ;
+
+}
+main .section.golden-font h1:after{
+    display: none;
+}
+
+

@@ -1,5 +1,28 @@
 import { fetchPlaceholders } from '../../scripts/aem.js';
 
+
+function parseTable(elTable) {
+
+  // Initialize an object to hold parameter-value pairs
+  var paramMap = {};
+
+  // Loop through the table rows
+  for (var i = 0, row; row = elTable.rows[i]; i++) {
+    // Get the parameter name from the first column
+    var paramName = row.cells[0].textContent.trim();
+    // Get the parameter value from the second column
+    var paramValue = row.cells[1].textContent.trim();
+
+    // Store the parameter name and value in the paramMap object
+    paramMap[paramName] = paramValue;
+  }
+
+  // Return a function that allows fetching values by parameter name
+  return function(paramName) {
+    return paramMap[paramName];
+  };
+}
+
 function updateActiveSlide(slide) {
   const block = slide.closest('.carousel');
   const slideIndex = parseInt(slide.dataset.slideIndex, 10);
@@ -92,6 +115,10 @@ function contentSlide(row) {
       }
 
       if(isTable) {
+        const getParamValue = parseTable(isTable);
+        const videoPath = getParamValue('video');
+        const posterPath = getParamValue('poster');
+
         const div = document.createElement('div');
         div.innerHTML = column.innerHTML;
 
@@ -101,9 +128,9 @@ function contentSlide(row) {
             controls=""
             disablepictureinpicture=""
             controlslist="nodownload noremoteplayback noplaybackrate"
-            poster="https://s7ap1.scene7.com/is/image/itcportalprod/DF-Desserts-(Male)?fmt=webp-alpha"
+            poster="${posterPath}"
             class="cmp-video__player"
-            src="https://s7ap1.scene7.com/is/content/itcportalprod/Not-Just-A-Cookie-A-Whole-Dessert-(MALE%20VERSION)">
+            src="${videoPath}">
         </video>`;
 
 

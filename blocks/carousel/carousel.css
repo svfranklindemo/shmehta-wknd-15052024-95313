@@ -244,6 +244,7 @@
   overflow: hidden;
   padding: 2.375rem 7.0625rem 0;
   text-align: center;
+  color: #f4eac0;
 }
 .carousel .slide-wrapper .button-container a:link,
 .carousel .slide-wrapper .button-container a:visited,
@@ -276,6 +277,7 @@
   overflow: hidden;
   padding: .9375rem 7.0625rem 0;
   text-align: center;
+  color: #fff2b7;
 }
 
 .carousel .content-wrapper .video-div {

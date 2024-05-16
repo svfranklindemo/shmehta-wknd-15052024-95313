@@ -19,6 +19,38 @@
   display: block;
 }
 
+main .section.custom-listing h1,
+main .section.custom-listing h2,
+main .section.custom-listing h3,
+main .section.custom-listing h4,
+main .section.custom-listing h5,
+main .section.custom-listing h6{
+  color: #fff2b7;
+
+}
+main .section.custom-listing p {
+  color: #fff;
+}
+main .section.custom-listing .columns-2-cols > div > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+main .section.custom-listing .columns-img-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+main .section.custom-listing .columns-2-cols picture{
+  display: flex;
+  justify-content: center;
+}
+main .section.custom-listing .columns-2-cols img{
+  display: block;
+  width: 50%;
+}
+
 @media (width >= 900px) {
   .columns > div {
     align-items: center;
