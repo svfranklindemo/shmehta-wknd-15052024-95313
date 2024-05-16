@@ -51,6 +51,64 @@ main .section.custom-listing .columns-2-cols img{
   width: 50%;
 }
 
+/**/
+main .section.product-range .each-store {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns with equal width */
+  grid-template-rows: auto auto; /* Two rows with height based on content */
+  column-gap: 5px; /* Optional: gap between grid items */
+  color: #000;
+  background: #fff6b8;
+  border-radius: 15px;
+  cursor: pointer;
+}
+main .section.product-range .each-store:link,
+main .section.product-range .each-store:visited,
+main .section.product-range .each-store:hover,
+main .section.product-range .each-store:active {
+  text-decoration: none;
+}
+
+main .section.product-range .each-store > div:nth-child(1) {
+  grid-column: 1 / 2; /* Span the first column */
+  grid-row: 1; /* Place in the first row */
+  display: flex;
+  align-items: center; /* Center items vertically within the div */
+}
+
+main .section.product-range .each-store > div:nth-child(3) {
+  grid-column: 2 / 3; /* Span the second column */
+  grid-row: 1; /* Place in the first row */
+  display: flex;
+  align-items: center; /* Center items vertically within the div */
+}
+
+main .section.product-range .each-store > div:nth-child(2) {
+  grid-column: 1 / -1; /* Span both columns */
+  grid-row: 2; /* Place in the second row */
+  text-align: center; /* Optional: center text horizontally */
+  background-color: rgba(255,255,255,.5);
+  font-size: 1.2rem;
+  border-radius: 15px;
+}
+
+main .section.product-range .each-store > div img {
+  width: 30px;
+  height: auto;
+  display: block;
+  padding: 10px;
+}
+main .section.product-range .each-store > div strong {
+  font-size: 1.5rem;
+}
+
+main .section.product-range .store-list-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
 @media (width >= 900px) {
   .columns > div {
     align-items: center;

@@ -1,27 +1,5 @@
 import { fetchPlaceholders } from '../../scripts/aem.js';
-
-
-function parseTable(elTable) {
-
-  // Initialize an object to hold parameter-value pairs
-  var paramMap = {};
-
-  // Loop through the table rows
-  for (var i = 0, row; row = elTable.rows[i]; i++) {
-    // Get the parameter name from the first column
-    var paramName = row.cells[0].textContent.trim();
-    // Get the parameter value from the second column
-    var paramValue = row.cells[1].textContent.trim();
-
-    // Store the parameter name and value in the paramMap object
-    paramMap[paramName] = paramValue;
-  }
-
-  // Return a function that allows fetching values by parameter name
-  return function(paramName) {
-    return paramMap[paramName];
-  };
-}
+import { parseTable } from '../../scripts/helper/helper.js';
 
 function updateActiveSlide(slide) {
   const block = slide.closest('.carousel');
