@@ -158,7 +158,7 @@
     --background-color: var(--itc-color-neutral-50);
     --nav-height: 6.4rem;
     --med-grid-layout: 792px;
-    --large-grid-layout: 1200px;
+    --large-grid-layout: 1400px;
 }
 
 @font-face {
@@ -461,7 +461,7 @@ main .section {
 
 @media (width >= 1024px) {
     .section > div {
-        max-width: 1200px;
+        max-width: 1400px;
         margin: auto;
     }
 }

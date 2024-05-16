@@ -189,12 +189,12 @@ export default async function decorate(block) {
     </div>
   `);
 
-  /*navTools.append(minicart);
+  /*navTools.append(minicart);*/
 
   const minicartPanel = navTools.querySelector('.minicart-panel');
 
   const cartButton = navTools.querySelector('.nav-cart-button');
-  cartButton.setAttribute('aria-label', 'Cart');*/
+  cartButton?.setAttribute('aria-label', 'Cart');
 
   async function toggleMiniCart(state) {
     const show = state ?? !minicartPanel.classList.contains('nav-panel--show');
